@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "MoneyPathPro — Boards That Think With You",
+  title: "The Infinite Board — Boards That Think With You",
   description:
     "Interactive collaborative boards for study, planning, and creative work. Turn learning into interaction with smart whiteboard solutions.",
   generator: "v0.app",
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     "education",
     "planning tools",
   ],
-  authors: [{ name: "MoneyPathPro" }],
+  authors: [{ name: "The Infinite Board" }],
   icons: {
-    icon: "/favicon.ico",
+    icon: "/public/favicon.ico",
   },
 }
 
