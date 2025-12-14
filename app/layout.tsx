@@ -25,7 +25,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "The Infinite Board" }],
   icons: {
-    icon: "/public/favicon.ico",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.jpg",
   },
 }
 
