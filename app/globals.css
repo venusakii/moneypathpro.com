@@ -1,0 +1,263 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* The Infinite Board Colors - whiteboard aesthetic */
+  --chalk-white: #fafaf9;
+  --graphite-black: #1f1f1f;
+  --neon-mint: #9af7ca;
+  --sky-blue: #a4d7f5;
+  --yellow-accent: #feea82;
+
+  /* Design Tokens */
+  --background: #fafaf9;
+  --foreground: #1f1f1f;
+  --card: #ffffff;
+  --card-foreground: #1f1f1f;
+  --popover: #ffffff;
+  --popover-foreground: #1f1f1f;
+  --primary: #9af7ca;
+  --primary-foreground: #1f1f1f;
+  --secondary: #a4d7f5;
+  --secondary-foreground: #1f1f1f;
+  --muted: #f5f5f4;
+  --muted-foreground: #6b7280;
+  --accent: #feea82;
+  --accent-foreground: #1f1f1f;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #e7e5e4;
+  --input: #e7e5e4;
+  --ring: #9af7ca;
+  --chart-1: #9af7ca;
+  --chart-2: #a4d7f5;
+  --chart-3: #feea82;
+  --chart-4: #1f1f1f;
+  --chart-5: #94a3b8;
+  --radius: 1rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Dark mode = blackboard theme with neon chalk colors */
+  --background: #1f1f1f;
+  --foreground: #fafaf9;
+  --card: #2a2a2a;
+  --card-foreground: #fafaf9;
+  --popover: #2a2a2a;
+  --popover-foreground: #fafaf9;
+  --primary: #9af7ca;
+  --primary-foreground: #1f1f1f;
+  --secondary: #a4d7f5;
+  --secondary-foreground: #1f1f1f;
+  --muted: #2a2a2a;
+  --muted-foreground: #94a3b8;
+  --accent: #feea82;
+  --accent-foreground: #1f1f1f;
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #404040;
+  --input: #404040;
+  --ring: #9af7ca;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  /* Updated fonts for The Infinite Board */
+  --font-sans: "Inter", "Inter Fallback", system-ui, sans-serif;
+  --font-heading: "Satoshi Variable", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Whiteboard sketch grid background */
+.sketch-grid {
+  background-image: linear-gradient(rgba(31, 31, 31, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(31, 31, 31, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Magnetic cursor effect */
+@keyframes magnetic-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.magnetic-cursor {
+  animation: magnetic-pulse 2s ease-in-out infinite;
+}
+
+/* Chalk/marker underline animation */
+@keyframes chalk-underline {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.chalk-underline {
+  position: relative;
+}
+
+.chalk-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: var(--neon-mint);
+  animation: chalk-underline 0.6s ease forwards;
+}
+
+/* Glowing line path */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(154, 247, 202, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(154, 247, 202, 0.8), 0 0 30px rgba(154, 247, 202, 0.4);
+  }
+}
+
+.glow-line {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Sticky note float effect */
+@keyframes sticky-float {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+
+.sticky-float {
+  animation: sticky-float 3s ease-in-out infinite;
+}
+
+/* Handwriting to clean type animation */
+@keyframes write-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.write-in {
+  animation: write-in 0.8s ease-out;
+}
+
+/* Drawing trail effect */
+.draw-trail {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(154, 247, 202, 0.8) 0%, transparent 70%);
+  animation: fade-out 2s ease-out forwards;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+/* Whiteboard wipe transition */
+@keyframes wipe-right {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.wipe-transition {
+  animation: wipe-right 0.6s ease-out;
+}
